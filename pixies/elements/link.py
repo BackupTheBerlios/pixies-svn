@@ -18,7 +18,8 @@ class Link(Properties):
 		
 	def getText( self ):
 		s = ''
-		for i in self.node.childNodes:
-			s += i.data
+		for n in self.node.childNodes:
+			if n.nodeType == n.TEXT_NODE:
+				s  += n.data
 			
 		return s

@@ -40,10 +40,20 @@ are packaged and present on the CDs of your distribution):
 def xslt_convert( xml, xsl ):
 	if not _have_xslt:
 		Error( _err_msg )
+
+	libxml2.lineNumbersDefault( 1 )
+	libxml2.substituteEntitiesDefault( 1 )
 	
 	styledoc = libxml2.parseFile( xsl )
+	if not styledoc:
+		Error("Cannot parse stylesheet: '%s'" % xsl )
+
 	style = libxslt.parseStylesheetDoc( styledoc )
+
 	doc = libxml2.parseFile( xml )
+	if not doc:
+		Error("Unable to parse XML document: '%s'" % xml )
+
 	result = style.applyStylesheet( doc, None )
 	s = style.saveResultToString( result )
 	style.freeStylesheet()
