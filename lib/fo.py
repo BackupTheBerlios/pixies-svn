@@ -8,10 +8,8 @@ Copyright (C) 2004 Matteo Merli <matteo.merli@gmail.com>
 
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.platypus import *
-from reportlab.lib.units import *
 from reportlab.lib.enums import *
 from reportlab.lib.colors import Color, toColor
-from reportlab.lib.fonts import *
 
 ##################from reportlab.platypus.para import Paragraph
 
@@ -35,59 +33,7 @@ def convertAlign( a ):
 	# default
 	return TA_LEFT
 
-addMapping('serif', 0, 0, 'Times-Roman')
-addMapping('serif', 1, 0, 'Times-Bold')
-addMapping('serif', 0, 1, 'Times-Italic')
-addMapping('serif', 1, 1, 'Times-BoldItalic')
-addMapping('sans-serif', 0, 0, 'Helvetica')
-addMapping('sans-serif', 1, 0, 'Helvetica-Bold')
-addMapping('sans-serif', 0, 1, 'Helvetica-Oblique')
-addMapping('sans-serif', 1, 1, 'Helvetica-BoldOblique')
-addMapping('monospace', 0, 0, 'Courier')
-addMapping('monospace', 1, 0, 'Courier New-Bold')
-addMapping('monospace', 0, 1, 'Courier New-Italic')
-addMapping('monospace', 1, 1, 'Courier New-BoldItalic')
-	
-def convertFont( attrs, style ):
-	font, bold, italic = ps2tt( style.fontName )
-	if 'font-family' in attrs:
-		font = attrs['font-family'].split(',')[0]
-	if 'font-style' in attrs:
-		if attrs['font-style'] == 'italic':
-			italic = 1
-	if 'font-weight' in attrs:
-		if attrs['font-weight'] != 'normal':
-			bold = 1
-	return tt2ps( font, bold, italic )
-	
-## 1em is fixed to 11pt
-em = 11
-	
-def toLength(s):
-	'''convert a string to  a length'''
-	try:
-		if s[-2:]=='cm': return float(s[:-2])*cm
-		if s[-2:]=='in': return float(s[:-2])*inch
-		if s[-2:]=='pt': return float(s[:-2])
-		if s[-1:]=='i': return float(s[:-1])*inch
-		if s[-2:]=='mm': return float(s[:-2])*mm
-		if s[-4:]=='pica': return float(s[:-4])*pica
-		if s[-2:]=='pc': return float(s[:-2])*pica
-		if s[-2:]=='em': return float(s[:-2]) * em
-		if s[-1:]=='%': return float(s[:-1]) * em / 100
-		return float(s)
-	except:
-		## check for the form: margin-left="1.2in - -1.5pc"
-		try:
-			l1, l2 = s.split(' - ')
-			l1 = toLength( l1 )
-			l2 = toLength( l2 )
-			return float( l1 - l2 )
-		except:
-			raise
-		raise ValueError, "Can't convert '%s' to length" % s
 
-		
 ############################################################################
 ############################################################################
 ############################################################################
@@ -204,10 +150,6 @@ class FoBuilder:
 			style.leading = toLength( attrs['line-height'] )
 		if 'text-indent' in attrs:
 			style.firstLineIndent = toLength( attrs['text-indent'] )
-		if 'space-before.optimum' in attrs:
-			style.spaceBefore = toLength( attrs['space-before.optimum'] )
-		if 'space-after.optimum' in attrs:
-			style.spaceAfter = toLength( attrs['space-after.optimum'] )	
 		
 		seq = None
 		for s in self.sequences:
