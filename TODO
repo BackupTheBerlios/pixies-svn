@@ -1,0 +1,21 @@
+
+$Id$
+$URL$
+
+There's a lot to be done to support an acceptable subset of the XSL-FO
+specification. However here are my priorities in no particular order:
+
+* Support nested blocks, inheriting properties from parents elements.
+
+* Support for external images. Initially with bitmaps support and later
+  SVG support trough some 3d parts library.
+
+* Correctly support borders. (should not be too much difficult)
+
+* Support fo:table
+
+* Support itemized lists
+
+... more to come here, hints are welcome.
+
+
