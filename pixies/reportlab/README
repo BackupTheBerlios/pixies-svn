@@ -9,6 +9,12 @@ ReportLab code has been imported into Pixies in order to
 have less external dependencies. We'll try to keep the 
 code present here in sync with the one from ReportLab SVN.
 
+The code in these subfolders is all:
+
+Copyright (c) 2000-2004, ReporLab Inc.
+
+See licence.txt for licensing information.
+
 The 'revision' file in this folder contains the revision
 number of this copy of ReportLab. This can be used to check
 differencies between this copy and the newest copy:
