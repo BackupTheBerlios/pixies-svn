@@ -18,3 +18,8 @@ def Warning( msg ):
 		
 def NotImplemented( feature ):
 	Warning("Not Implemented: '%s'" % feature)
+	
+def Log( msg ):
+	if type( msg ) == list:
+		msg = ' '.join( msg )
+	sys.stderr.write( msg + '\n' )
