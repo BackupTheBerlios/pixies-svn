@@ -9,6 +9,8 @@ Copyright (C) 2004 Matteo Merli <matteo.merli@gmail.com>
 import xml.dom.minidom
 
 from fo import FoBuilder
+from lib.utils import *
+from lib.elements import *
 
 def normalize_whitespace(text):
     """Remove redundant whitespace from a string"""
@@ -28,7 +30,8 @@ class Handler( FoBuilder ):
 			if node.nodeType == node.TEXT_NODE:
 				rc += node.data
 			elif node.nodeName == 'fo:inline':
-				rc += self.handle_inline( node )
+				inline = self.handle_inline( node )
+				rc += inline.getText()
 			elif node.nodeName == 'fo:page-number':
 				rc += "#1"
 			elif node.nodeName == 'fo:marker':
@@ -37,9 +40,7 @@ class Handler( FoBuilder ):
 				# print "fo:marker:", text
 			elif node.nodeName == 'fo:block':
 				return rc
-				"""<fo:marker marker-class-name="section.head.marker">
-                 			 Competencies</fo:marker>
-                 		"""
+				"""<fo:marker marker-class-name="section.head.marker">Competencies</fo:marker>"""
 				  
 			else:
 				print "Unhandled Inline tag:", node.nodeName
@@ -54,7 +55,7 @@ class Handler( FoBuilder ):
 			
 	def handle_layout_master_set(self, set):
 		for i in set.getElementsByTagName("fo:simple-page-master"):
-			attrs = dict( i.attributes.items() )
+			attrs = Attrs( i )
 			self.fo_simple_page_master( attrs )
 			## print "###", attrs['master-name']
 			
@@ -68,13 +69,13 @@ class Handler( FoBuilder ):
 				self.fo_region( name, attrs['master-name'], a )
 				
 		for i in set.getElementsByTagName('fo:page-sequence-master'):
-			attrs = dict( i.attributes.items() )
+			attrs = Attrs( i )
 			sequence_name = attrs['master-name']
 			# print "Sequence Name:", sequence_name
 			for j in i.getElementsByTagName('fo:repeatable-page-master-alternatives'):
 				for h in j.childNodes:
 					if h.nodeName == 'fo:conditional-page-master-reference':
-						attrs = dict( h.attributes.items() )
+						attrs = Attrs( h )
 						master = attrs['master-reference']
 						# print "Conditional - Master:", master
 						
@@ -85,8 +86,7 @@ class Handler( FoBuilder ):
 					
 				
 	def handle_page_sequence(self, seq ):
-		attrs = dict( seq.attributes.items() )
-		## print "Page Sequence - Ref:", attrs['master-reference']
+		attrs = Attrs( seq )
 		page_sequence = attrs['master-reference']
 		
 		self.fo_page_sequence( page_sequence )
@@ -101,16 +101,16 @@ class Handler( FoBuilder ):
 				self.handle_flow( c, page_sequence )
 				
 	def handle_static_content(self, static, page_sequence):
-		attrs = dict( static.attributes.items() )
+		attrs = Attrs( static )
 		region = attrs['flow-name']
-		# print "Static Content: ==> ", region
+		print "Static Content: ==> ", region, " page_sequence:", page_sequence
 		blocks = static.getElementsByTagName("fo:block")
 		##for i in blocks:
 		## print i.nodeName, ' - ' ,self.getText( i )
 		self.handle_blocks( blocks, page_sequence, region )
 	
 	def handle_flow(self, flow, page_sequence):
-		attrs = dict( flow.attributes.items() )
+		attrs = Attrs( flow )
 		region = attrs['flow-name']
 		print "Flow: ==> ", region
 		blocks = flow.getElementsByTagName("fo:block")
@@ -121,18 +121,13 @@ class Handler( FoBuilder ):
 			self.handle_block( block, page_sequence, region )
 			
 	def handle_block(self, block, page_sequence, region ):
-		# print "fo:block"
-		attrs = dict( block.attributes.items() )
-		# print "TEXT:", getText( block )
+		attrs = Attrs( block )
 		self.fo_block( self.getText(block), attrs, page_sequence, region )
 		# for b in block.getElementsByTagName('fo:block'):
 		#	self.handle_block( b )
 		
 	def handle_inline(self, inline ):
-		print "fo:inline"
-		attrs = dict( inline.attributes.items() )
-		print attrs
-		return "<i>%s</i>" %  unicode( self.getText( inline ) )
+		return Inline( inline )
 	 
 	
 
