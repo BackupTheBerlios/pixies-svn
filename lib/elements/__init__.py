@@ -13,3 +13,4 @@ from page_master import *
 from inline import *
 from region import *
 from sequence import *
+from link import *

@@ -14,7 +14,13 @@ from lib.utils import *
 
 class Block( Paragraph, Properties ):
 	
-	def __init__(self, text, attrs ):
+	def __init__(self, text, attrs, bulletText=None, frags=None ):
+		
+		# The class is instancied from a split()
+		if frags: 
+			Paragraph.__init__ (self, text, attrs, bulletText=bulletText, frags=frags )
+			return 
+			
 		Properties.__init__(self)
 		text = text.encode('latin1', 'ignore')
 		
