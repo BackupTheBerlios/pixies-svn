@@ -9,14 +9,8 @@
 		<author><firstname>Matteo</firstname><surname>Merli</surname></author>
 		<title>Design notes on Pixies Formatting Objects</title>
 		<titleabbrev>Pixies-FO Design</titleabbrev>
-		<revhistory>
-			<revision>
-				<revnumber>$Revision$</revnumber>
-				<date>$Date$</date>
-				<author>$Author$</author>
-			</revision>
-		</revhistory>
-		
+		<pubdate>$Date$</pubdate>
+		<releaseinfo>$Revision$</releaseinfo>
 	</articleinfo>
 	
 <section>
