@@ -1,0 +1,19 @@
+
+$Id$
+$URL$
+
+Here are some XSL-FO examples. You can convert them to pdf invocating:
+
+   $ pixies example.fo
+
+
+
+Note: 
+
+  The 'alternate.fo' example is broken (or better: Pixies is broken and cannot 
+  renders it..) because is a multi-page document.
+  Documents which use more than one page are not working because the algorithm 
+  that breaks paragraph on more pages it is broken. 
+  This is the very first in TODO list.
+  
+
