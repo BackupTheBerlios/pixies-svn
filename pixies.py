@@ -12,9 +12,9 @@ This code is licenced under the GPL. See LICENSE file.
 
 VERSION = '0.2-svn'
 
-from lib import parser, xslt
-from lib.template import DocumentTemplate
-from lib.utils import *
+from pixies import parser, xslt
+from pixies.template import DocumentTemplate
+from pixies.utils import *
 
 import sys, os
 from optparse import OptionParser
