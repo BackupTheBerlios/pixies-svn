@@ -39,6 +39,9 @@ class Style:
 		if 'space-after' in p: self.spaceAfter = p['space-after']
 		if 'color' in p: self.textColor = p['color']
 		if 'background-color' in p: self.backColor = p['background-color']
+			
+		# Check for line-height consintency..
+		if self.leading <= self.fontSize:
+			self.leading = self.fontSize + 2
 		
-		
-		
+
