@@ -7,6 +7,7 @@ Copyright (C) 2004 Matteo Merli <matteo.merli@gmail.com>
 """
 
 from reportlab.lib.fonts import *
+from reportlab.lib.fonts import _tt2ps_map
 
 # Added some very basic fonts.. 
 # They should be already there from ReportLab, but the alias
@@ -23,11 +24,36 @@ addMapping('monospace', 0, 0, 'Courier')
 addMapping('monospace', 1, 0, 'Courier New-Bold')
 addMapping('monospace', 0, 1, 'Courier New-Italic')
 addMapping('monospace', 1, 1, 'Courier New-BoldItalic')
+
+
+_families = {}
+
+# We keep a list of all valid family names
+for k in _tt2ps_map.keys():
+	_families[ k[0] ] = None
 	
-def convertFont( attrs, style ):
-	font, bold, italic = ps2tt( style.fontName )
+print "Valid font families:\n", _families
+
+
+# Default Font
+bold = 0
+italic = 0
+font = 'serif'
+default_font = tt2ps( font, bold, italic )
+
+	
+def PsFont( attrs, default=default_font ):
+	""" Return the Postscript description of the selected font """
+	font, bold, italic = ps2tt( default )
+	
 	if 'font-family' in attrs:
-		font = attrs['font-family'].split(',')[0]
+		font_list = attrs['font-family'].split(',')
+		for f in font_list:
+			if f.lower() in _families:
+				font = f.lower()
+				break
+			
+		
 	if 'font-style' in attrs:
 		if attrs['font-style'] == 'italic':
 			italic = 1
