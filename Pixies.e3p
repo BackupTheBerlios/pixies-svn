@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-3.5.dtd">
 <!-- Project file for project Pixies -->
-<!-- Saved: 2004-11-01, 00:58:48 -->
+<!-- Saved: 2004-11-02, 16:28:53 -->
 <!-- Copyright (C) 2004 Matteo Merli, matteo.merli@gmail.com -->
 <Project version="3.5">
   <Description></Description>
@@ -100,6 +100,11 @@
       <Dir>elements</Dir>
       <Name>sequence.py</Name>
     </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>elements</Dir>
+      <Name>link.py</Name>
+    </Source>
   </Sources>
   <Forms>
   </Forms>
@@ -130,4 +135,7 @@
     <VcsOptions>{'status': [''], 'log': [''], 'global': [''], 'update': [''], 'remove': [''], 'add': [''], 'tag': [''], 'export': [''], 'diff': [''], 'commit': [''], 'checkout': [''], 'history': ['']}</VcsOptions>
     <VcsOtherData>{'standardLayout': 1}</VcsOtherData>
   </Vcs>
+  <Eric3Doc>
+    <Eric3DocParams>{'useRecursion': True, 'outputDirectory': u'html'}</Eric3DocParams>
+  </Eric3Doc>
 </Project>
