@@ -10,6 +10,7 @@ This code is licenced under the GPL. See LICENSE file.
 
 from lib.utils import *
 from properties import *
+from link import *
 
 class Inline( Properties ):
 	""" This represent the &lt;fo:inline&gt; element. """
@@ -31,7 +32,7 @@ class Inline( Properties ):
 		
 		font = {}
 		if 'font-family' in self.attrs:
-			font['font'] = self.attrs['font-family']
+			font['face'] = self.attrs['font-family']
 		if 'font-size' in p:
 			font['font-size'] = p['font-size']
 		if 'color' in p:
@@ -39,7 +40,9 @@ class Inline( Properties ):
 		if 'background-color' in p:
 			font['bgcolor'] = p['background-color']
 			
-		self._add( 'font', font )	
+		if font: 
+			self._add( 'font', font )	
+			print font, self.getText()
 			
 		if self.attrs.get('font-weight') == 'bold':
 			self._add('b')
@@ -59,11 +62,15 @@ class Inline( Properties ):
 			elif n.nodeName == 'fo:inline':
 				i = Inline( n )
 				self.text += i.getText()
+			elif n.nodeName == 'fo:basic-link':
+				l = Link( n )
+				self.text += l.getText()
 			elif n.nodeName == 'fo:page-number':
 				self.text += "#1#"
 
 		## print "\nAdded Inline Formatting:"
-		self.text = self.prefix + self.text + self.suffix 
+		self.text = self.prefix + escape_tags(self.text) + self.suffix 
+		print "###", self.text
 		return unicode( trim_spaces( self.text ) )			
 			
 	def _add( self, key, attrs={} ):
