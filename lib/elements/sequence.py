@@ -4,6 +4,8 @@ $Id$
 $URL$
 
 Copyright (C) 2004 Matteo Merli <matteo.merli@gmail.com>
+
+This code is licenced under the GPL. See LICENSE file.
 """
 
 from lib.utils import *
@@ -18,7 +20,9 @@ class SinglePageMaster:
 class RepeteablePageMaster:
 	
 	def __init__( self, node ):
-		pass
+		NotImplemented('fo-repeteable-page-master')
+		
+	## def 
 		
 class AlternativePageMaster:
 	
@@ -34,6 +38,8 @@ class AlternativePageMaster:
 			self.conditions.append( Conditional( n ) )
 			
 class Conditional:
+	""" Represent a condition in a 
+		&lt;fo:repeteable-page-master-alternatives&gt; """
 	
 	def __init__( self, node ):
 		attrs = Attrs( node )
@@ -50,6 +56,7 @@ class Conditional:
 		print " * '%s' --%s" % ( self.master_reference, s )
 		
 	def test( self, page_number, rel_page_number, blank=None ):
+		""" Test if the page-master specified should be used for the current page. """
 		result = True 
 		if self._test_position( rel_page_number ) is False: 
 			return False
@@ -57,6 +64,7 @@ class Conditional:
 			return False
 	
 	def _test_position( self, rel_page_number ):
+		""" Test the page-position condition """
 		if not self.page_position:
 			return None
 			
@@ -69,11 +77,12 @@ class Conditional:
 		## Actually I don't have clue how to treat the case of page-position="last"
 		## The problem is that at this point we don't down the total number of
 		## pages
-		## if self.page_position == 'last' and rel_page_number > 1:
+		## if self.page_position == 'last' and ???? :
 		##	return True	
 		return False
 		
 	def _test_odd( self, page_number ):
+		""" Test the odd-or-even condition. """
 		if not self.odd_or_even:
 			return None
 		if self.odd_or_even == 'any': 
@@ -84,6 +93,21 @@ class Conditional:
 			return True
 			
 		return False
+		
+	def _test_blank( self, blank=None ):
+		""" Test the blank-or-not-blank. """
+		if not self.blank_or_not_blank:
+			return None
+		
+		if self.blank_or_not_blank == 'any':
+			return True
+		if self.blank_or_not_blank == 'blank':
+			# Actually we don't effectevely test it.. 
+			# we just say that all the pages are not blank
+			# XXX This should be fixed in a remote future..
+			return False
+		return True
+			
 
 class SequenceMaster:
 	
@@ -102,21 +126,12 @@ class SequenceMaster:
 			if j.nodeName == 'fo:repeatable-page-master-alternatives':
 				self.subsequences.append( AlternativePageMaster( j ) )
 				
-		"""
-		# ('fo:repeatable-page-master-alternatives'):
-			
-			for h in j.childNodes:
-				print 
-				
-				if h.nodeName == 'fo:conditional-page-master-reference':
-					attrs = Attrs( h )
-					master = attrs['master-reference']
-					print "Conditional - Master:", master
-					
-					self.fo_page_master_reference( master, sequence_name )
-					
-					#### Ok.. actually we only use the first page template
-					break
-				"""
-				
 		print "-----"
+
+
+	def getMaster(self, page_number, rel_page_number):
+		""" Returns the reference to the page-master to be used 
+			in the current page. """
+		
+		pass
+		

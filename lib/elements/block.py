@@ -4,6 +4,8 @@ $Id$
 $URL$
 
 Copyright (C) 2004 Matteo Merli <matteo.merli@gmail.com>
+
+This code is licenced under the GPL. See LICENSE file.
 """
 
 from reportlab.platypus.paragraph import *
@@ -12,17 +14,6 @@ from lib.utils import *
 
 class Block( Paragraph, Properties ):
 	
-	"""
-	<fo:block font-size="18pt"
-            font-family="sans-serif"
-            line-height="24pt"
-            space-after.optimum="15pt"
-            background-color="blue"
-            color="white"
-            text-align="center"
-            padding-top="3pt"
-            font-variant="small-caps">
-	"""
 	def __init__(self, text, attrs ):
 		Properties.__init__(self)
 		text = text.encode('latin1', 'ignore')

@@ -4,6 +4,8 @@ $Id$
 $URL$
 
 Copyright (C) 2004 Matteo Merli <matteo.merli@gmail.com>
+
+This code is licenced under the GPL. See LICENSE file.
 """
 
 import xml.dom.minidom
@@ -11,10 +13,6 @@ import xml.dom.minidom
 from fo import FoBuilder
 from lib.utils import *
 from lib.elements import *
-
-def normalize_whitespace(text):
-    """Remove redundant whitespace from a string"""
-    return ' '.join(text.split())
 
 class Handler( FoBuilder ):
 	def __init__(self, root):
@@ -47,7 +45,6 @@ class Handler( FoBuilder ):
 		return rc
 			
 	def handle_root(self, root ):
-		print "fo:root", root.nodeType, root.nodeValue
 		for i in root.getElementsByTagName("fo:layout-master-set"):
 			self.handle_layout_master_set( i )
 		for sequence in root.getElementsByTagName('fo:page-sequence'):
@@ -68,23 +65,9 @@ class Handler( FoBuilder ):
 				name = a.get('region-name', "xsl-%s" % region.nodeName.split(':')[-1])
 				self.fo_region( name, attrs['master-name'], a )
 				
-		for i in set.getElementsByTagName('fo:page-sequence-master'):
-			attrs = Attrs( i )
-			sequence_name = attrs['master-name']
-			# print "Sequence Name:", sequence_name
-			for j in i.getElementsByTagName('fo:repeatable-page-master-alternatives'):
-				for h in j.childNodes:
-					if h.nodeName == 'fo:conditional-page-master-reference':
-						attrs = Attrs( h )
-						master = attrs['master-reference']
-						# print "Conditional - Master:", master
-						
-						self.fo_page_master_reference( master, sequence_name )
-						
-						#### Ok.. actually we only use the first page template
-						break
-					
-				
+		for seq in set.getElementsByTagName('fo:page-sequence-master'):
+			SequenceMaster( seq )
+			
 	def handle_page_sequence(self, seq ):
 		attrs = Attrs( seq )
 		page_sequence = attrs['master-reference']
@@ -128,7 +111,7 @@ class Handler( FoBuilder ):
 		
 	def handle_inline(self, inline ):
 		return Inline( inline )
-	 
+	
 	
 
 def go( filename ):

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-3.5.dtd">
 <!-- Project file for project Pixies -->
-<!-- Saved: 2004-10-31, 17:13:55 -->
+<!-- Saved: 2004-11-01, 00:58:48 -->
 <!-- Copyright (C) 2004 Matteo Merli, matteo.merli@gmail.com -->
 <Project version="3.5">
   <Description></Description>
@@ -95,6 +95,11 @@
       <Dir>lib</Dir>
       <Name>__init__.py</Name>
     </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>elements</Dir>
+      <Name>sequence.py</Name>
+    </Source>
   </Sources>
   <Forms>
   </Forms>
@@ -105,6 +110,16 @@
   <Others>
     <Other>
       <Name>pixies</Name>
+    </Other>
+    <Other>
+      <Name>docs</Name>
+    </Other>
+    <Other>
+      <Dir>docs</Dir>
+      <Name>Makefile</Name>
+    </Other>
+    <Other>
+      <Name>samples</Name>
     </Other>
   </Others>
   <MainScript>

@@ -4,6 +4,8 @@ $Id$
 $URL$
 
 Copyright (C) 2004 Matteo Merli <matteo.merli@gmail.com>
+
+This code is licenced under the GPL. See LICENSE file.
 """
 
 from reportlab.platypus import *
@@ -68,7 +70,6 @@ class FoBuilder:
 		seq = None
 		for s in self.sequences:
 			if s.name == sequence:
-				print "We are in sequence:", sequence
 				seq = s 
 				break
 			

@@ -4,13 +4,15 @@ $Id$
 $URL$
 
 Copyright (C) 2004 Matteo Merli <matteo.merli@gmail.com>
+
+This code is licenced under the GPL. See LICENSE file.
 """
 
 from lib.utils import *
 from properties import *
 
 class Inline( Properties ):
-	
+	""" This represent the &lt;fo:inline&gt; element. """
 	
 	def __init__(self, node):
 		Properties.__init__(self)
@@ -47,6 +49,8 @@ class Inline( Properties ):
 		
 
 	def getText(self):
+		""" Return the processed text of the Inline object, 
+			resolving all the nested tags. """
 		self.text = ''
 		for n in self.node.childNodes:
 			if n.nodeType == n.TEXT_NODE:
@@ -61,7 +65,9 @@ class Inline( Properties ):
 		self.text = self.prefix + self.text + self.suffix 
 		return unicode( trim_spaces( self.text ) )			
 			
-	def add( self, key, attrs={} ):
+	def _add( self, key, attrs={} ):
+		""" Add a xml-like tag to pass inline formatting 
+			specification to paragraph builder. """
 		self.prefix += '<%s' % key
 		for k,v in attrs:
 			self.prefix += ' %s="%s"' % (k,v)
