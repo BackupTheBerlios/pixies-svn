@@ -116,9 +116,18 @@ class Handler( FoBuilder ):
 	
 	
 
-def go( filename ):
+def go( filename=None, buffer=None ):
+	
+	if not (filename or buffer):
+		Error("We don't have and XSL-FO input")
+	if (filename and buffer):
+		Error("We have two XSL-FO input!")
 
-	root = xml.dom.minidom.parse( filename )
+	if filename:
+		root = xml.dom.minidom.parse( filename )
+	elif string:
+		root = xml.dom.minidom.parseString( buffer )
+		
 	dh = Handler( root )
 	
 	# returns the instance of the handler

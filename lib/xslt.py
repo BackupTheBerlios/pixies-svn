@@ -5,6 +5,8 @@ $URL$
 
 Copyright (C) 2004 Matteo Merli <matteo.merli@gmail.com>
 
+This code is licenced under the GPL. See LICENSE file.
+
 This module contains the functions to convert the XML documents 
 to XSL-FO using a XSL stylesheet.
 We should take care that someone may not have the xml and xslt 
@@ -33,7 +35,7 @@ are packaged and present on the CDs of your distribution):
 
  * libxml2  - http://xmlsoft.org/
  * libxslt  - http://xmlsoft.org/XSLT/ 
-	"""
+"""
 
 def xslt_convert( xml, xsl ):
 	if not _have_xslt:
