@@ -18,6 +18,7 @@ class Handler( FoBuilder ):
 	def __init__(self, root):
 		self.tag = None
 		self.text = ''
+		self.seq_master = {}
 		self.attrs = None
 		FoBuilder()
 		self.handle_root( root )
@@ -66,7 +67,8 @@ class Handler( FoBuilder ):
 				self.fo_region( name, attrs['master-name'], a )
 				
 		for seq in set.getElementsByTagName('fo:page-sequence-master'):
-			SequenceMaster( seq )
+			seq_master = SequenceMaster( seq )
+			self.seq_master[ seq_master.name ] = seq_master
 			
 	def handle_page_sequence(self, seq ):
 		attrs = Attrs( seq )
