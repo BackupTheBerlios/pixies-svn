@@ -19,21 +19,14 @@
 			 what count are the sizes)
 		-->
 		<fo:simple-page-master master-name="A4" page-height="29.7cm" page-width="21cm" 
-								 margin-top="2cm" margin-bottom="2cm" margin-left="2cm" margin-right="2cm">
+			 margin-top="2cm" margin-bottom="2cm" margin-left="2cm" margin-right="2cm">
 			<fo:region-body/>
 		</fo:simple-page-master>
 		
-		<!-- Here we define a page sequence -->
-		<fo:page-sequence-master master-name="my_sequence">
-			<fo:repeatable-page-master-alternatives>
-			  <fo:conditional-page-master-reference master-reference="A4" odd-or-even="any" />
-			</fo:repeatable-page-master-alternatives>
-		</fo:page-sequence-master>
-		  
 		</fo:layout-master-set>
 		
 		<!-- here starts the "real" content -->
-		<fo:page-sequence master-reference="my_sequence">
+		<fo:page-sequence master-reference="A4">
 		  <fo:flow flow-name="xsl-region-body">
 			
 			<fo:block font-family="Times" font-size="18pt" font-weight="bold">
@@ -45,6 +38,7 @@
 			<xsl:sort select="author" /> <!-- This tell that we want items sorted by author -->
 			  
 			  <fo:block font-size="12pt" font-family="sans-serif">
+				<!-- for each book in our collection print author and title -->
 				<xsl:value-of select="author"/> - 
 				<fo:inline font-style="italic">
 					<xsl:value-of select="title"/>
