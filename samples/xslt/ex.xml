@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- $Id$ -->
+<!-- $URL$ -->
+	
+<!-- 
+ 
+	This is just an example of a generic XML data document that
+	can contain any sort of data..
+	
+	Just with the purpose of example we make here a collection of
+	books..
+	-->
+
+<collection>
+  <title>This is my book collection</title>
+  
+  <book>
+	<title>Il pendolo di Focault</title>
+	<author>Umberto Eco</author>
+	<!-- obviously you can have as many attributes here as you want -->
+  </book>
+  
+  <book>
+	<title>1984</title>
+	<author>George Orwell</author>
+  </book>
+  
+  <book>
+	<title>L'Étranger</title>
+	<author>Albert Camus</author>
+  </book>
+  
+  
+</collection>
+

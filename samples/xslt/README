@@ -1,0 +1,21 @@
+
+$Id$
+$URL$
+
+This is an example on how perform a XSLT tranformation
+directly with Pixies.
+
+There are two file:
+
+ * ex.xml : The XML data collection. This can be any sort of data, you 
+            can define your own XML structure and you DON'T need a 
+            DTD (unless you want to validate the XML data).
+ * ex.xsl : The XSL stylesheet. It tells how the XML data should be
+            represented.
+
+Ex. :
+
+pixies ex.xml ex.xsl 
+
+This command will produce the ex.pdf document.
+
