@@ -1,0 +1,22 @@
+#!/usr/bin/env python
+
+"""
+$Id$
+$URL$
+
+Copyright (C) 2004 Matteo Merli <matteo.merli@gmail.com>
+"""
+
+import sys
+from lib import parser
+from lib.template import DocumentTemplate
+
+if len( sys.argv ) < 2:
+	print "Usage:\n " + sys.argv[0] + " [options] filename"
+	sys.exit( 1 )
+
+dh = parser.go( sys.argv[1] )
+
+doc = DocumentTemplate('test.pdf', dh )
+doc.build()
+
