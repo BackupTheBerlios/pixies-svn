@@ -12,7 +12,7 @@ DEBUG = 1
 
 def Warning( msg ):
 	if DEBUG:
-		sys.stderr.write( 'WARNING: %s' % msg )
+		sys.stderr.write( 'WARNING: %s\n' % msg )
 		
 def NotImplemented( feature ):
 	Warning("Not Implemented: '%s'" % feature)

@@ -35,7 +35,7 @@ for k in _tt2ps_map.keys():
 # Default Font
 bold = 0
 italic = 0
-font = 'serif'
+font = 'sans-serif'
 default_font = tt2ps( font, bold, italic )
 
 	
