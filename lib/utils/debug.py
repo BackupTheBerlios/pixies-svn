@@ -12,6 +12,10 @@ import sys
 
 DEBUG = 1 
 
+def Error( msg ):
+	sys.stderr.write( '\nERROR:\n%s\n\n' % msg )
+	sys.exit( -1 )
+
 def Warning( msg ):
 	if DEBUG:
 		sys.stderr.write( 'WARNING: %s\n' % msg )
