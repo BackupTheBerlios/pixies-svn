@@ -8,30 +8,28 @@ Copyright (C) 2004 Matteo Merli <matteo.merli@gmail.com>
 
 from reportlab.platypus import *
 from reportlab.pdfgen import canvas
-
-import copy
-def My(obj):
-	return copy.deepcopy( obj )
-
-def get( obj, attr ):
-	try:
-		f = obj.get( attr, 0.0 )
-	except:
-		f = 0.0
-	return f
+from lib.elements import Region
+from lib.utils import *
 
 def myPage(canvas, doc):
 	print "CANVAS::: DOC:::"
 	seq = doc.sequence.name
-	header = My( doc.sequence.regions.get('xsl-region-before') )
-	footer = My( doc.sequence.regions.get('xsl-region-after')  )
+	before = My( doc.sequence.regions.get( 'xsl-region-before' ) )
+	after = My( doc.sequence.regions.get( 'xsl-region-after' )  )
+	start = My( doc.sequence.regions.get( 'xsl-region-start' )  )
+	end = My( doc.sequence.regions.get( 'xsl-region-end' )  )
+	
 	canvas.saveState()
 	
 	for f in doc.pageTemplate.frames:
 		elements = None
 		if f.id == 'body': continue
-		if f.id == 'before': elements = header
-		if f.id == 'after': elements = footer
+		if f.id == 'before': elements = before
+		if f.id == 'after':  elements = after
+		if f.id == 'start':  elements = start
+		if f.id == 'end': 
+			elements = start #end
+			print "Region End elements:", elements
 		
 		if elements: 
 			f.addFromList( elements, canvas )
@@ -43,55 +41,72 @@ class DocumentTemplate(BaseDocTemplate):
 	def __init__(self, filename, dh):
 		self.dh = dh
 		BaseDocTemplate.__init__(self, filename)
-		for name,attrs in self.dh.page_masters.items():
-			self.buildPageTemplate(name, attrs)
+		for pm in self.dh.page_masters.values():
+			self.buildPageTemplate( pm )
 			
-	def buildPageTemplate(self, name, attrs):
-		print "New Page Template:", name
-		width = attrs['page-width']
-		height = attrs['page-height']
-		pagesize = (width, height)
+	def buildPageTemplate(self, pm):
+		print "New Page Template:", pm.name
 		
-		leftMargin   = get(attrs,'margin-left')
-		rightMargin  = get(attrs,'margin-right')
-		topMargin    = get(attrs, 'margin-top')
-		bottomMargin = get(attrs,'margin-bottom')
+		empty = Region( {} )
 		
-		be = self.dh.page_masters[name].get('xsl-region-before')
-		bo = self.dh.page_masters[name].get('xsl-region-body')
-		af = self.dh.page_masters[name].get('xsl-region-after')
+		be = pm.regions.get( 'xsl-region-before', empty )
+		bo = pm.regions.get( 'xsl-region-body',   empty )
+		af = pm.regions.get( 'xsl-region-after', empty )
+		st = pm.regions.get( 'xsl-region-start',  empty )
+		en = pm.regions.get( 'xsl-region-end',    empty )
 		
-		fwidth = width - leftMargin - rightMargin
+		fwidth = pm.width - pm.leftMargin - pm.rightMargin
+		fheight = pm.height - pm.topMargin - pm.bottomMargin - be.extent - af.extent
 		
 		frameBefore = Frame( 
-				leftMargin + get(be,'margin-left'),
-				height - topMargin - get(be,'extent'), ## region-before bottomMargin
-				fwidth, 
-				get(be,'extent'), 
-				id='before', showBoundary=0,
-				leftPadding=get(be,'padding-left'),rightPadding=get(be,'padding-right'),
-				topPadding=get(be,'padding-top'),bottomPadding=get(be,'padding-bottom') )
+				pm.leftMargin,
+				pm.height - pm.topMargin - be.extent,
+				fwidth,
+				be.extent, 
+				id='before', showBoundary=1,
+				leftPadding=be.paddingLeft, rightPadding=be.paddingRight,
+				topPadding=be.paddingTop, bottomPadding=be.paddingBottom )
 				
-		frameBody =   Frame( 
-				leftMargin + get(bo, 'margin-left'), 
-				bottomMargin + 0, 
-				fwidth, 
-				height - topMargin - bottomMargin - get(bo, 'margin-bottom') - get(bo, 'margin-top'), 
-				id='body', showBoundary=0,
-				leftPadding=get(be,'padding-left'),rightPadding=get(be,'padding-right'),
-				topPadding=get(be,'padding-top'),bottomPadding=get(be,'padding-bottom'))
+		frameStart = Frame( 
+				pm.leftMargin,  # X0
+				pm.bottomMargin + af.extent,  # Y0
+				st.extent,   # width 
+				fheight,  # height
+				id='start', showBoundary=1,
+				leftPadding=st.paddingLeft, rightPadding=st.paddingRight,
+				topPadding=st.paddingTop, bottomPadding=st.paddingBottom )
+				
+		frameBody =  Frame( 
+				pm.leftMargin + bo.marginLeft, 
+				pm.bottomMargin + bo.marginBottom,  
+				fwidth - bo.marginLeft - bo.marginRight,
+				pm.height - pm.topMargin - pm.bottomMargin - bo.marginBottom - bo.marginTop, 
+				id='body', showBoundary=1,
+				leftPadding=bo.paddingLeft, rightPadding=bo.paddingRight,
+				topPadding=bo.paddingTop, bottomPadding=bo.paddingBottom)
+				
+		frameEnd = Frame( 
+				pm.width - pm.rightMargin - en.extent,  # X0
+				pm.bottomMargin + af.extent, # Y0
+				en.extent,   # width 
+				fheight,  # height
+				id='end', showBoundary=1,
+				leftPadding=en.paddingLeft, rightPadding=en.paddingRight,
+				topPadding=en.paddingTop, bottomPadding=en.paddingBottom )
 		
 		frameAfter =  Frame( 
-				leftMargin, 
-				bottomMargin + get(af,'margin-bottom'), 
+				pm.leftMargin, 
+				pm.bottomMargin, 
 				fwidth, 
-				get(af,'extent'), 
-				id='after', showBoundary=0,
-				leftPadding=get(be,'padding-left'),rightPadding=get(be,'padding-right'),
-				topPadding=get(be,'padding-top'),bottomPadding=get(be,'padding-bottom'))
+				af.extent, 
+				id='after', showBoundary=1,
+				leftPadding=af.paddingLeft, rightPadding=af.paddingRight,
+				topPadding=af.paddingTop, bottomPadding=af.paddingBottom)
+				
+		
 	
-		frame_list = [frameBody, frameBefore, frameAfter]
-		tmpl = PageTemplate( id=name, frames=frame_list, pagesize=pagesize, onPage=myPage)
+		frame_list = [frameBody, frameBefore, frameAfter, frameStart, frameEnd]
+		tmpl = PageTemplate( id=pm.name, frames=frame_list, pagesize=pm.pagesize, onPage=myPage)
 		self.addPageTemplates( tmpl )
 		
 	def handle_pageBegin( self ):
