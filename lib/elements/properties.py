@@ -11,11 +11,15 @@ from lib.utils import *
 
 
 class Properties:
-	properties = {}
-		
+	properties = None
+	
+	def __init__(self):
+		self.properties = {}
+
 	def common_borders( self, attrs ):
+		p = self.properties
 		if 'background-color' in attrs :
-			self.style.backColor = toColor( attrs['background-color'].encode('utf-8') )
+			p['background-color'] = toColor( attrs['background-color'] )
 		if 'background-image' in attrs :
 			NotImplemented('background-image')
 		if 'background-repeat' in attrs :
@@ -26,13 +30,13 @@ class Properties:
 			NotImplemented('background-position-vertical')
 			
 		if 'padding-left' in attrs:
-			d['padding-left'] = toLength( attrs['padding-left'] )
+			p['padding-left'] = toLength( attrs['padding-left'] )
 		if 'padding-right' in attrs:
-			d['padding-right'] = toLength( attrs['padding-right'] )
+			p['padding-right'] = toLength( attrs['padding-right'] )
 		if 'padding-top' in attrs:
-			d['padding-top'] = toLength( attrs['padding-top'] )
+			p['padding-top'] = toLength( attrs['padding-top'] )
 		if 'padding-bottom' in attrs:
-			d['padding-bottom'] = toLength( attrs['padding-bottom'] )
+			p['padding-bottom'] = toLength( attrs['padding-bottom'] )
 	
 	def common_margins(self, attrs ):
 		p = self.properties
@@ -48,6 +52,8 @@ class Properties:
 			p['space-before'] = toLength( attrs['space-before.optimum'] )
 		if 'space-after.optimum' in attrs:
 			p['space-after'] = toLength( attrs['space-after.optimum'] )	
+		if 'extent' in attrs:
+			p['extent'] = toLength( attrs['extent'] )	
 			
 	def common_fonts( self, attrs ):
 		p = self.properties
@@ -76,7 +82,7 @@ class Properties:
 		if 'line-height' in attrs:
 			p['line-height'] = toLength( attrs['line-height'] )
 		if 'text-align' in attrs:
-			p['text-align'] = Alignement( attrs['text-align'] )
+			p['text-align'] = Alignment( attrs['text-align'] )
 		if 'color' in attrs:
 			p['color'] = toColor( attrs['color'] )
 			
