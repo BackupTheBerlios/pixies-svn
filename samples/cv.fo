@@ -1363,6 +1363,7 @@ line-height-shift-adjustment="disregard-shifts" language="en">
           </fo:list-block>
         </fo:block>
       </fo:block>
+	  <!--
       <fo:block id="id2528644">
         <fo:block>
           <fo:block>
@@ -1385,12 +1386,15 @@ line-height-shift-adjustment="disregard-shifts" language="en">
             </fo:block>
           </fo:block>
         </fo:block>
+
         <fo:block space-before.optimum="1em"
         space-before.minimum="0.8em" space-before.maximum="1.2em">
         Prof. Francesco Zanichelli - Computer Engineering
         Department - Universit&#224; degli Studi di Parma -
         Italy</fo:block>
+
       </fo:block>
+	  -->
     </fo:flow>
   </fo:page-sequence>
 </fo:root>
