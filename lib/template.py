@@ -12,7 +12,7 @@ from lib.elements import Region
 from lib.utils import *
 
 def myPage(canvas, doc):
-	print "CANVAS::: DOC:::"
+	print "New Page"
 	seq = doc.sequence.name
 	before = My( doc.sequence.regions.get( 'xsl-region-before' ) )
 	after = My( doc.sequence.regions.get( 'xsl-region-after' )  )
@@ -93,7 +93,7 @@ class DocumentTemplate(BaseDocTemplate):
 				id='end', showBoundary=1,
 				leftPadding=en.paddingLeft, rightPadding=en.paddingRight,
 				topPadding=en.paddingTop, bottomPadding=en.paddingBottom )
-		
+				
 		frameAfter =  Frame( 
 				pm.leftMargin, 
 				pm.bottomMargin, 
@@ -103,8 +103,8 @@ class DocumentTemplate(BaseDocTemplate):
 				leftPadding=af.paddingLeft, rightPadding=af.paddingRight,
 				topPadding=af.paddingTop, bottomPadding=af.paddingBottom)
 				
-		
-	
+				
+				
 		frame_list = [frameBody, frameBefore, frameAfter, frameStart, frameEnd]
 		tmpl = PageTemplate( id=pm.name, frames=frame_list, pagesize=pm.pagesize, onPage=myPage)
 		self.addPageTemplates( tmpl )
@@ -116,16 +116,16 @@ class DocumentTemplate(BaseDocTemplate):
 				break
 		print "Using Page Template:", self.pageTemplate.id
 		self._handle_pageBegin()
-
+		
 	def build( self ):
 		self._calc()
 		# flowableCount = len(flowables)
 		self._startBuild( None, canvas.Canvas )
-		
+			
 		for seq in self.dh.sequences:
 			self.sequence = seq
 			flowables = seq.regions['xsl-region-body']
-
+				
 			while len(flowables):
 				self.clean_hanging()
 				try:
@@ -146,7 +146,7 @@ class DocumentTemplate(BaseDocTemplate):
 							)
 						exc.args = tuple(args)
 					raise
-		
+					
 		self._endBuild()
-	
+		
 		
