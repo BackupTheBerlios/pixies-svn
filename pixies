@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2.4
 
 """
 $Id$
@@ -7,16 +7,49 @@ $URL$
 Copyright (C) 2004 Matteo Merli <matteo.merli@gmail.com>
 """
 
+
+VERSION = '0.0.1'
+
 import sys
+
 from lib import parser
 from lib.template import DocumentTemplate
 
-if len( sys.argv ) < 2:
-	print "Usage:\n " + sys.argv[0] + " [options] filename"
-	sys.exit( 1 )
+from optparse import OptionParser
 
-dh = parser.go( sys.argv[1] )
+parser = OptionParser(usage="usage: %prog [options] fo_file")
 
-doc = DocumentTemplate('test.pdf', dh )
+parser.add_option("-o", "--pdf", dest="pdfname",
+		help="write PDF output to FILE", metavar="FILE")
+
+parser.add_option('-v', '--version', action='store_true', dest='version', 
+			help="show program's version number and exit")
+		
+parser.add_option('--verbose', action='store_true', dest='verbose', 
+			help="be verbose...")
+
+(options, args) = parser.parse_args()
+
+if options.version:
+	print "Pixies Formatting Objects - Pdf creator \nVersion %s" % VERSION
+	print "Copyright (C) 2004 Matteo Merli <matteo.merli@gmail.com>"
+	sys.exit(0)
+
+if  len(args) != 1:
+	parser.error('you should provide only one argument.')
+	
+foname = args[0]
+if not options.pdfname:
+	# We derive the PDF name from the inpout filename
+	options.pdfname = '.'.join( foname.split('.')[:-1] ) + '.pdf'
+	
+print options
+print args
+
+
+dh = parser.go( foname )
+
+doc = DocumentTemplate( options.pdfname , dh )
 doc.build()
+
 
