@@ -15,14 +15,18 @@ class SinglePageMaster:
 	def __init__( self, node ):
 		attrs = Attrs( node )
 		self.master_reference = attrs['master-reference']
-		print "NEW single-page-master-reference"
+		Log( " - fp:single-page-master-reference [%s]" % self.master_reference )
 		
 class RepeteablePageMaster:
 	
 	def __init__( self, node ):
-		NotImplemented('fo-repeteable-page-master')
+		attrs = Attrs( node )
+		self.maximum_repeat = attrs.get( 'maximum-repeat', 0 )
+		self.master_reference = attrs['master-reference']
+		Log(' - fo:repeteable-page-master [max:%u] [%s]' % (self.maximum_repeat, self.master_reference))
 		
-	## def 
+	def get( self, page_number, rel_page_number ):
+		return self.master_reference
 		
 class AlternativePageMaster:
 	
@@ -30,12 +34,19 @@ class AlternativePageMaster:
 		attrs = Attrs( node )
 		self.maximum_repeat = attrs.get( 'maximum-repeat', 0 )
 		self.conditions = []
-		print "New repeatable-page-master-alternatives"
-		print "Conditions:"
+		Log( " - fo:repeatable-page-master-alternatives" )
+		Log( "     Conditions:" )
 		for n in node.childNodes:
 			if n.nodeName != 'fo:conditional-page-master-reference':
 				continue
 			self.conditions.append( Conditional( n ) )
+			
+	def get( self, page_number, rel_page_number ):
+		for c in self.conditions:
+			if c.test( page_number, rel_page_number ):
+				return c.master_reference
+				
+		return None
 			
 class Conditional:
 	""" Represent a condition in a 
@@ -53,7 +64,7 @@ class Conditional:
 		if self.odd_or_even: s += " [odd-or-even='%s']" % self.odd_or_even
 		if self.page_position: s += " [page-position='%s']" % self.page_position
 		if self.blank_or_not_blank: s += " [blank-or-not-blank='%s']" % self.blank_or_not_blank
-		print " * '%s' --%s" % ( self.master_reference, s )
+		Log( "      * '%s' --%s" % ( self.master_reference, s ) )
 		
 	def test( self, page_number, rel_page_number, blank=None ):
 		""" Test if the page-master specified should be used for the current page. """
@@ -62,6 +73,10 @@ class Conditional:
 			return False
 		if self._test_odd( page_number ) is False:
 			return False
+		if self._test_blank() is False:
+			return False
+			
+		return True
 	
 	def _test_position( self, rel_page_number ):
 		""" Test the page-position condition """
@@ -111,13 +126,13 @@ class Conditional:
 
 class SequenceMaster:
 	
-	def __init__(self, node):
+	def __init__( self, node ):
 		self.subsequences = []
 		self.attrs = Attrs( node )
 		self.name = self.attrs['master-name']
-		print "***\nNew sequence: ",  self.name
+		Log( "***\nNew sequence: " + self.name )
 		
-		print "Elements:"
+		Log( "Elements:" )
 		for j in node.childNodes:
 			if j.nodeName == 'fo:single-page-master-reference':
 				self.subsequences.append( SinglePageMaster( j ) )
@@ -126,12 +141,14 @@ class SequenceMaster:
 			if j.nodeName == 'fo:repeatable-page-master-alternatives':
 				self.subsequences.append( AlternativePageMaster( j ) )
 				
-		print "-----"
+		Log( "-----" )
 
 
-	def getMaster(self, page_number, rel_page_number):
+	def getMaster( self, page_number, rel_page_number ):
 		""" Returns the reference to the page-master to be used 
 			in the current page. """
 		
-		pass
+		for s in self.subsequences:
+			r = s.get( page_number, page_number )
+			if r: return r
 		
