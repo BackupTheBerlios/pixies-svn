@@ -14,7 +14,7 @@ extensions installed. The only thing we do is to inform of the
 problem.
 """
 
-from lib.utils import *
+from pixies.utils import *
 
 _have_xslt = True
 

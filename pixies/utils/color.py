@@ -10,7 +10,7 @@ This code is licenced under the GPL. See LICENSE file.
 
 from reportlab.lib import colors
 # import Color, toColor
-from lib.utils import *
+from pixies.utils import *
 
 def toColor( color ):
 	""" Convert a color string to an internal representation """

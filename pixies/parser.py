@@ -11,8 +11,8 @@ This code is licenced under the GPL. See LICENSE file.
 import xml.dom.minidom
 
 from fo import FoBuilder
-from lib.utils import *
-from lib.elements import *
+from pixies.utils import *
+from pixies.elements import *
 
 class Handler( FoBuilder ):
 	def __init__(self, root):

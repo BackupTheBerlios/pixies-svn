@@ -10,8 +10,8 @@ This code is licenced under the GPL. See LICENSE file.
 
 from reportlab.platypus import *
 from reportlab.pdfgen import canvas
-from lib.elements import Region
-from lib.utils import *
+from pixies.elements import Region
+from pixies.utils import *
 
 def myPage(canvas, doc):
 	seq = doc.sequence.name

@@ -8,7 +8,7 @@ Copyright (C) 2004 Matteo Merli <matteo.merli@gmail.com>
 This code is licenced under the GPL. See LICENSE file.
 """
 
-from lib.utils import *
+from pixies.utils import *
 from properties import *
 from link import *
 

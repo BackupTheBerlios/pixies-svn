@@ -10,7 +10,7 @@ This code is licenced under the GPL. See LICENSE file.
 
 from reportlab.platypus.paragraph import *
 from properties import *
-from lib.utils import *
+from pixies.utils import *
 
 class Block( Paragraph, Properties ):
 	

@@ -9,8 +9,7 @@ This code is licenced under the GPL. See LICENSE file.
 """
 
 from reportlab.platypus import *
-
-from lib.elements import *
+from pixies.elements import *
 
 
 ##################from reportlab.platypus.para import Paragraph

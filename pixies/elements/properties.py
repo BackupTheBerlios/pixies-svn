@@ -9,8 +9,7 @@ This code is licenced under the GPL. See LICENSE file.
 """
 
 import sys
-from lib.utils import *
-
+from pixies.utils import *
 
 class Properties:
 	properties = None
