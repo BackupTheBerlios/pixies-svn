@@ -136,18 +136,11 @@ class Handler( FoBuilder ):
 	 
 	
 
-# Little testing
 def go( filename ):
 
 	root = xml.dom.minidom.parse( filename )
 	dh = Handler( root )
-	"""
-	try:
-		parser.parse( filename )
-	except xml.sax._exceptions.SAXParseException:
-		sys.stderr.write("Fatal error parsing xml file..  (line: %u)\n" % parser.getLineNumber() )
-		sys.exit(1)
-	"""
+	
 	# returns the instance of the handler
 	return dh
 	

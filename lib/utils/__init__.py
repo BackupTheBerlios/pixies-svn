@@ -11,3 +11,5 @@ from fonts import *
 from length import *
 from color import *
 from debug import *
+from align import *
+from misc import *

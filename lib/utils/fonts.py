@@ -32,9 +32,6 @@ _families = {}
 for k in _tt2ps_map.keys():
 	_families[ k[0] ] = None
 	
-print "Valid font families:\n", _families
-
-
 # Default Font
 bold = 0
 italic = 0
@@ -55,7 +52,7 @@ def PsFont( attrs, default=default_font ):
 			
 		
 	if 'font-style' in attrs:
-		if attrs['font-style'] == 'italic':
+		if attrs['font-style'] in ('italic','oblique'):
 			italic = 1
 	if 'font-weight' in attrs:
 		if attrs['font-weight'] != 'normal':

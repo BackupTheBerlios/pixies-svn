@@ -36,8 +36,7 @@ class Block( Paragraph ):
 		
 		style.fontName = convertFont( attrs, style )
 		# print style.fontName
-		if 'font-size' in attrs:
-			style.fontSize = toLength( attrs['font-size'] )
+		
 		if 'color' in attrs:
 			style.textColor = toColor( attrs['color'].encode('utf-8') )
 		if 'background-color' in attrs :
