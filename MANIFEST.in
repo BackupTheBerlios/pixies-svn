@@ -1,5 +1,5 @@
 include pixies/pixies
-include LICENSE
+include LICENSE INSTALL
 recursive-include docs/ *.html *.xml
 recursive-include samples/ *
 

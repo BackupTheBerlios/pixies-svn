@@ -1,0 +1,30 @@
+
+====================
+HOWTO INSTALL PIXIES 
+====================
+
+$Id$
+$URL$
+
+Unix platforms 
+##############
+
+If you're reading this file you have already unpacked the source 
+archive. If not:
+
+$ tar xvfz pixies-0.2.tar.gz
+
+$ cd pixies-0.2
+
+At this point you have to gain superuser rights:
+
+$ su
+
+type root password
+
+# ./setup.py install
+
+And Pixies it's installed. You can test if it works just typing 'pixies' 
+in the command line.
+
+
