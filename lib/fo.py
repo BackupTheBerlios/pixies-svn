@@ -6,7 +6,6 @@ $URL$
 Copyright (C) 2004 Matteo Merli <matteo.merli@gmail.com>
 """
 
-from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.platypus import *
 
 from lib.elements import *
@@ -14,12 +13,7 @@ from lib.elements import *
 
 ##################from reportlab.platypus.para import Paragraph
 
-styles = getSampleStyleSheet()
-"""
-NormalStyle = My( styles["Normal"] )
-NormalStyle.spaceBefore = 0.1*inch
-NormalStyle.alignment = TA_JUSTIFY
-"""
+
 
 
 ############################################################################
@@ -49,11 +43,11 @@ class FoBuilder:
 		pass
 	
 	def fo_simple_page_master(self, attrs ):
-		self.page_masters[ name ] = PageMaster( attrs )
+		self.page_masters[ attrs['master-name'] ] = PageMaster( attrs )
 
 	def fo_region(self, name, master, attrs ):
-		rm = checkSizeMarginAttrs( attrs )
-		self.page_masters[ master ][ name ] = rm
+		r = Region( attrs )
+		self.page_masters[ master ][ name ] = r
 		
 	def fo_page_master_reference(self, master, sequence_name ):
 		self.master = master
@@ -70,8 +64,6 @@ class FoBuilder:
 			# print "'Empty' box: "
 			# print attrs
 			return
-		
-		style = My( NormalStyle )
 		
 		seq = None
 		for s in self.sequences:
@@ -93,7 +85,7 @@ class FoBuilder:
 			seq.regions[ region ] = []
 			
 		seq.regions[ region ].append( 
-						Paragraph( text.encode('latin1', 'ignore'), style ) 
+						Block( text, attrs ) 
 				)
 		
 		
