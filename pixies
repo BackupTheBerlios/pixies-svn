@@ -17,18 +17,18 @@ from lib.template import DocumentTemplate
 
 from optparse import OptionParser
 
-parser = OptionParser(usage="usage: %prog [options] fo_file")
+opt = OptionParser(usage="usage: %prog [options] fo_file")
 
-parser.add_option("-o", "--pdf", dest="pdfname",
+opt.add_option("-o", "--pdf", dest="pdfname",
 		help="write PDF output to FILE", metavar="FILE")
 
-parser.add_option('-v', '--version', action='store_true', dest='version', 
+opt.add_option('-v', '--version', action='store_true', dest='version', 
 			help="show program's version number and exit")
 		
-parser.add_option('--verbose', action='store_true', dest='verbose', 
+opt.add_option('--verbose', action='store_true', dest='verbose', 
 			help="be verbose...")
 
-(options, args) = parser.parse_args()
+(options, args) = opt.parse_args()
 
 if options.version:
 	print "Pixies Formatting Objects - Pdf creator \nVersion %s" % VERSION
@@ -36,17 +36,13 @@ if options.version:
 	sys.exit(0)
 
 if  len(args) != 1:
-	parser.error('you should provide only one argument.')
+	opt.error('you should provide only one argument.')
 	
 foname = args[0]
 if not options.pdfname:
-	# We derive the PDF name from the inpout filename
+	# We derive the PDF name from the input filename
 	n = os.path.basename( '.'.join( foname.split('.')[:-1] ) + '.pdf' )
 	options.pdfname = os.path.join( os.path.curdir, n )
-	
-print options
-print args
-
 
 dh = parser.go( foname )
 
