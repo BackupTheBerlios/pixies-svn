@@ -30,3 +30,10 @@ def get( obj, attr ):
 def trim_spaces(text):
     """Remove redundant whitespace from a string"""
     return ' '.join( text.split() )
+
+def escape_tags(text):
+	"""Replace < and > with &lt; and &gt; """
+	if not text: return ''
+	text.replace('<', '&lt;')
+	text.replace('>', '&gt;')
+	return text

@@ -28,7 +28,7 @@ def toLength(s, default=em):
 	except:
 		## check for the form: margin-left="1.2in - -1.5pc"
 		try:
-			print "WARNING: TESTING NEGATIVE VALUES: ",  s 
+			Warning("TESTING NEGATIVE VALUES: %s" % s )
 			l1, l2 = s.split(' - ')
 			l1 = toLength( l1 )
 			l2 = toLength( l2 )
