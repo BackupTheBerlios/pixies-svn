@@ -14,3 +14,4 @@ from inline import *
 from region import *
 from sequence import *
 from link import *
+from graphic import *

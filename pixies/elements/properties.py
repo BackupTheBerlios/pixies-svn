@@ -87,6 +87,14 @@ class Properties:
 		if 'color' in attrs:
 			p['color'] = toColor( attrs['color'] )
 			
+			
+	def graphic( self, attrs ):
+		""" Graphics specific properties """
+		p = self.properties
+		
+		if 'src' in attrs:
+			p['src'] = attrs['src']
+			
 		
 		
 		
