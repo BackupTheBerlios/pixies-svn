@@ -1,0 +1,74 @@
+
+====================
+   PIXIES README
+====================
+
+$Id$
+$URL$
+
+Pixies is a formatter that convert XSL-FO documents to PDF. It is written 
+in python and it is particulary focused on the production of PDF files from 
+DocBook documents. 
+Additionally it supports XSLT tranformations from XML to XSL-FO.
+
+LICENSE
+=======
+
+Pixies code is CopyRight (c) 2004, Matteo Merli <matteo.merli@gmail.com>
+The sources are released under GPL license. See LICENSE file for more
+informations.
+
+ReportLab code (in pixies/reportlab folder) is 
+CopyRight (c) 2000-2004, ReportLab Inc. http://www.reportlab.com
+and covered by BSD license (see reportlab/license.txt for more
+informations).
+
+
+REQUIREMENTS
+============
+
+The only requirements is a working Python installation.
+However if you do want to be able to make XSLT tranformations, 
+you will need the two following Python extension, which are 
+likely to be installed on your system (if you have a recent 
+linux distribution):
+
+  - libxml2  - http://xmlsoft.org/
+  - libxslt  - http://xmlsoft.org/XSLT/
+
+
+INSTALL
+=======
+
+See intallation instruction contained in the INSTALL file.
+
+USAGE
+=====
+
+Typing 
+
+$ pixies --help
+
+will give you a short overview of the command line usage of Pixies.
+
+** Examples 
+
+   * To convert an XSL-FO document to PDF:
+
+          $ pixies doc.fo doc.pdf
+   
+       If you omit the output filename, it will be guessed from the input 
+       filename, so it's the same to write:
+   
+          $ pixies doc.fo
+
+   * To convert an XML data file to PDF using an XSL stylesheet:
+   
+          $ pixies doc.xml doc.xsl doc.pdf
+
+
+
+
+
+
+
