@@ -1,5 +1,28 @@
-<?xml encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
 
-<!--
-	Just a few design notes on the project.
--->
+<article>
+	<articleinfo>
+		<author><firstname>Matteo</firstname><surname>Merli</surname></author>
+		<title>Design notes on Pixies Formatting Objects</title>
+		<titleabbrev>Pixies-FO Design</titleabbrev>
+		<revhistory>
+			<revision>
+				<revnumber>$Revision$</revnumber>
+				<date>$Date$</date>
+				<author>$Author$</author>
+			</revision>
+		</revhistory>
+		
+	</articleinfo>
+	
+<section>
+	<title>Introduction</title>
+
+<para>
+	The body of the article...
+</para>
+</section>
+
+</article>
+
