@@ -94,7 +94,9 @@ Below fo:root there is always
                 line-height="15pt"
                 space-after.optimum="3pt"
                 text-align="start">
-        The <fo:inline font-variant="small-caps" font-style="italic">Extensible Markup Language (XML)</fo:inline> is a subset of SGML that is completely described in this document. Its goal is to
+        The <fo:inline font-variant="small-caps" font-style="italic">Extensible Markup Language 
+		<fo:inline font-weight="bold">(XML)</fo:inline></fo:inline> 
+		is a subset of SGML that is completely described in this document. Its goal is to
         enable generic SGML to be served, received, and processed on the Web in the way that is now possible with HTML. XML
         has been designed for ease of implementation and for interoperability with both SGML and HTML.
       </fo:block>
