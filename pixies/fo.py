@@ -8,7 +8,7 @@ Copyright (C) 2004 Matteo Merli <matteo.merli@gmail.com>
 This code is licenced under the GPL. See LICENSE file.
 """
 
-from reportlab.platypus import *
+from pixies.reportlab.platypus import *
 from pixies.elements import *
 
 

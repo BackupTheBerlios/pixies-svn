@@ -1,0 +1,17 @@
+
+$Id$
+$URL$
+
+ReportLab
+#########
+
+ReportLab code has been imported into Pixies in order to
+have less external dependencies. We'll try to keep the 
+code present here in sync with the one from ReportLab SVN.
+
+The 'revision' file in this folder contains the revision
+number of this copy of ReportLab. This can be used to check
+differencies between this copy and the newest copy:
+
+   svn diff -r `cat revision` http://www.reportlab.co.uk/svn/public/reportlab/
+

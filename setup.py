@@ -20,7 +20,15 @@ focused on the production of PDF files from DocBook documents.
 	platforms='ALL',
 	
 	url="http://merlimat.net/software/pixies",
-	packages=['pixies', 'pixies.utils', 'pixies.elements'],
+	packages=['pixies', 
+		'pixies.utils', 
+		'pixies.elements',
+		'pixies.reportlab',
+		'pixies.reportlab.lib',
+		'pixies.reportlab.pdfbase',
+		'pixies.reportlab.pdfgen',
+		'pixies.reportlab.platypus'
+	],
 	scripts=['pixies/pixies']
 )
 

@@ -1,5 +1,6 @@
 include pixies/pixies
-include LICENSE INSTALL
+global-include README LICENSE INSTALL ChangeLog *.py
 recursive-include docs/ *.html *.xml
 recursive-include samples/ *
+include pixies/reportlab/revision
 
