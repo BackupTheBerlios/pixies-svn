@@ -31,7 +31,7 @@ class Inline( Properties ):
 		
 		font = {}
 		if 'font-family' in self.attrs:
-			font['font-family'] = self.attrs['font-family']
+			font['font'] = self.attrs['font-family']
 		if 'font-size' in p:
 			font['font-size'] = p['font-size']
 		if 'color' in p:
@@ -39,12 +39,13 @@ class Inline( Properties ):
 		if 'background-color' in p:
 			font['bgcolor'] = p['background-color']
 			
-		
-		if self.attrs.get('font-weight') == 'bold':
-			self.add('b')
-		if self.attrs.get('font-style') in ('italic', 'oblique'):
-			self.add('i')
+		self._add( 'font', font )	
 			
+		if self.attrs.get('font-weight') == 'bold':
+			self._add('b')
+		if self.attrs.get('font-style') in ('italic', 'oblique'):
+			self._add('i')
+		
 		
 		
 
@@ -69,7 +70,7 @@ class Inline( Properties ):
 		""" Add a xml-like tag to pass inline formatting 
 			specification to paragraph builder. """
 		self.prefix += '<%s' % key
-		for k,v in attrs:
+		for k,v in attrs.items():
 			self.prefix += ' %s="%s"' % (k,v)
 		self.prefix += '>'
 		
