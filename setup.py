@@ -4,10 +4,11 @@
 # $URL$
 
 from distutils.core import setup
+from pixies import version
 
 setup(
 	name="pixies",
-	version="0.2",
+	version=version.string,
 	description="Convert XML and XSL-FO to PDF.",
 	long_description="""
 Pixies is a formatter that convert XSL-FO 

@@ -10,14 +10,14 @@ This code is licenced under the GPL. See LICENSE file.
 
 """
 
-VERSION = '0.2-svn'
-
-from pixies import parser, xslt
+from pixies import parser, xslt, version
 from pixies.template import DocumentTemplate
 from pixies.utils import *
 
 import sys, os
 from optparse import OptionParser
+
+version = version.string
 
 def change_dir( filename ):
 	""" Return a string containing the file moved in current directory """
@@ -55,7 +55,7 @@ opt.add_option('--verbose', action='store_true', dest='verbose',
 (options, args) = opt.parse_args()
 
 if options.version:
-	print "Pixies Formatting Objects - Pdf generator \nVersion %s" % VERSION
+	print "Pixies Formatting Objects - Pdf generator \nVersion %s" % version
 	print "Copyright (C) 2004 Matteo Merli <matteo.merli@gmail.com>"
 	sys.exit(0)
 
