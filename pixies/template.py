@@ -134,9 +134,11 @@ class DocumentTemplate(BaseDocTemplate):
 		if self.seq_master:
 			pt = self.seq_master.getMaster( page, self.rel_page )
 		else:
-			print self.sequence.name
-			print self.pageTemplates
-			pt = self.pageTemplates[ self.sequence.name ]
+			## print '@@@ sequence.name:', self.sequence.name
+			## print '@@@ self.pageTemplates:', self.pageTemplates
+			if not self.sequence.name in self.pageTemplates.keys():
+				Error("Page master '%s' not defined." % self.sequence.name )
+			pt = self.sequence.name
 		Log( "\t\t[%u] PageMaster='%s' [rel:%u]" % ( page, pt, self.rel_page ) )
 		self.pageTemplate = self.pageTemplates[ pt ]
 		self._handle_pageBegin()
