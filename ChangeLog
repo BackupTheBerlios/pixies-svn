@@ -1,0 +1,12 @@
+
+* ## 0.2 ## (xx xxx xxxx)
+  - Added options to perform XSLT tranformations from XML to XSL-FO.
+  - Restructured the package to use distutils
+  - Imported ReportLab sources into the package. This is no more 
+    a requirement for Pixies.
+  - Added more commented samples.
+  - Automized packaging release
+
+* ## 0.1 ## (8 Nov 2004)
+  First public release.
+
