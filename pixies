@@ -10,7 +10,7 @@ Copyright (C) 2004 Matteo Merli <matteo.merli@gmail.com>
 
 VERSION = '0.0.1'
 
-import sys
+import sys, os
 
 from lib import parser
 from lib.template import DocumentTemplate
@@ -41,7 +41,8 @@ if  len(args) != 1:
 foname = args[0]
 if not options.pdfname:
 	# We derive the PDF name from the inpout filename
-	options.pdfname = '.'.join( foname.split('.')[:-1] ) + '.pdf'
+	n = os.path.basename( '.'.join( foname.split('.')[:-1] ) + '.pdf' )
+	options.pdfname = os.path.join( os.path.curdir, n )
 	
 print options
 print args
