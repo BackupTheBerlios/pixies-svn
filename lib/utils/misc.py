@@ -24,3 +24,7 @@ def get( obj, attr ):
 	except:
 		f = 0.0
 	return f
+
+def trim_spaces(text):
+    """Remove redundant whitespace from a string"""
+    return ' '.join( text.split() )
