@@ -43,23 +43,23 @@ class Inline( Properties ):
 		if self.attrs.get('font-style') in ('italic', 'oblique'):
 			self.add('i')
 			
-		print "\nAdded Inline Formatting:"
-		print self.prefix + self.getText() + self.suffix + "\n\n"
+		
 		
 
 	def getText(self):
-		s = ''
+		self.text = ''
 		for n in self.node.childNodes:
 			if n.nodeType == n.TEXT_NODE:
-				s += n.data
+				self.text += n.data
 			elif n.nodeName == 'fo:inline':
 				i = Inline( n )
-				s += i.getText()
+				self.text += i.getText()
 			elif n.nodeName == 'fo:page-number':
-				s += "#1#"
+				self.text += "#1#"
 
-		return unicode( s )
-			
+		## print "\nAdded Inline Formatting:"
+		self.text = self.prefix + self.text + self.suffix 
+		return unicode( trim_spaces( self.text ) )			
 			
 	def add( self, key, attrs={} ):
 		self.prefix += '<%s' % key
