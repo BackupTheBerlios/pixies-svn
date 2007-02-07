@@ -74,7 +74,7 @@
   <!-- end: defines page layout -->
 
   <!-- actual layout -->
-  <fo:page-sequence master-reference="run1" initial-page-number="1">
+  <fo:page-sequence master-reference="run2" initial-page-number="1">
 
     <fo:flow flow-name="xsl-region-body">
 
@@ -84,7 +84,7 @@
             line-height="12pt"
             space-before.optimum="10pt"
             space-after.optimum="10pt"
-            text-align="start"
+            text-align="justify"
             padding-top="6pt">
 Journey across the barren Grounds - Difficulty and delay in crossing Copper-Mine River -
 Melancholy and fatal Results thereof - Extreme Misery of the whole Party - Murder of
@@ -99,7 +99,7 @@ Conclusion.
                 line-height="10pt"
                 space-before.optimum="3pt"
                 space-after.optimum="3pt"
-                text-align="start">1821. August 17.
+                text-align="justify">1821. August 17.
       </fo:block>
 
     <!-- Normal text -->
@@ -107,7 +107,7 @@ Conclusion.
           font-family="serif"
             line-height="12pt"
             space-after.optimum="0pt"
-            text-align="start">
+            text-align="justify">
 MY original intention, whenever the season should
 compel us to relinquish the survey, had been to return by the way
 of the Copper-Mine River, and in pursuance of my arrangement
@@ -134,7 +134,7 @@ barren grounds to Fort Enterprise.
             line-height="10pt"
             space-before.optimum="3pt"
       space-after.optimum="3pt"
-            text-align="start">August 19.
+            text-align="justify">August 19.
       </fo:block>
 
     <!-- Normal text -->
@@ -142,7 +142,7 @@ barren grounds to Fort Enterprise.
           font-family="serif"
             line-height="12pt"
             space-after.optimum="0pt"
-            text-align="start">
+            text-align="justify">
 We were almost beaten out of our comfortless abodes
 by rain during the night, and this morning the gale continued
 without diminution. The thermometer fell to 33 deg. Two men were
@@ -176,7 +176,7 @@ remained.
           font-family="serif"
             line-height="12pt"
             space-after.optimum="0pt"
-            text-align="start">
+            text-align="justify">
 The wind abated after midnight, and the surf diminished rapidly,
 which caused us to be on the alert at a very early hour on the 22d,
 but we had to wait until six A.M. for the return of Augustus who
@@ -207,7 +207,7 @@ dinnerless to bed.
           font-family="serif"
             line-height="12pt"
             space-after.optimum="0pt"
-            text-align="start">
+            text-align="justify">
 Soon after our departure to-day, a sealed tin-case, sufficiently
 buoyant to float, was thrown overboard, containing a short account of
 our proceedings, and the position of the most conspicuous points.
@@ -226,7 +226,7 @@ eastward.
             line-height="10pt"
             space-before.optimum="3pt"
       space-after.optimum="3pt"
-            text-align="start">August 23.
+            text-align="justify">August 23.
       </fo:block>
 
     <!-- Normal text -->
@@ -234,7 +234,7 @@ eastward.
           font-family="serif"
             line-height="12pt"
             space-after.optimum="0pt"
-            text-align="start">
+            text-align="justify">
 A severe frost caused us to pass a comfortless night.
 At two P.M. we set sail, and the men voluntarily launched out to
 make a traverse of fifteen miles across Melville Sound, before a
@@ -256,7 +256,7 @@ to the reader an accurate idea of the peril of our situation.
           font-family="serif"
             line-height="12pt"
             space-after.optimum="0pt"
-            text-align="start">
+            text-align="justify">
 The traverse, however, was made;we were then near a high
 rocky lee shore, on which a heavy surf was beating. The wind
 being on the beam, the canoes drifted fast to leeward; and, on
@@ -275,7 +275,7 @@ the second canoe, which was easily repaired.
           font-family="serif"
             line-height="12pt"
             space-after.optimum="0pt"
-            text-align="start">
+            text-align="justify">
 Our encampment being near to the place where we killed the deer
 on the 11th, almost the whole party went out to hunt, but they
 returned in the evening without having seen any game. The
@@ -293,7 +293,7 @@ commenced.
             line-height="10pt"
             space-before.optimum="3pt"
             space-after.optimum="3pt"
-            text-align="start">August 25.
+            text-align="justify">August 25.
       </fo:block>
 
     <!-- Normal text -->
@@ -301,7 +301,7 @@ commenced.
           font-family="serif"
             line-height="12pt"
             space-after.optimum="0pt"
-            text-align="start">
+            text-align="justify">
 Embarking at three A. M., we stretched across
 the eastern entrance of Bathurst's Inlet, and arrived at an island,
 which I have named after Colonel Barry, of Newton Barry. Some
@@ -320,7 +320,7 @@ were found here imbedded in the amygdaloidal rock.
           font-family="serif"
             line-height="12pt"
             space-after.optimum="0pt"
-            text-align="start">
+            text-align="justify">
 Re-embarking at two P.M., and continuing through what was
 supposed to be a channel between two islands, we found our passage
 barred by a gravelly isthmus of only ten yards in width ; the canoes
@@ -336,7 +336,7 @@ eighteen miles.
           font-family="serif"
             line-height="12pt"
             space-after.optimum="0pt"
-            text-align="start">
+            text-align="justify">
 Starting this morning with a fresh breeze in our favour,
 we soon reached that part of Barry's Island where the canoes were
 detained on the 2d and 3rd of this month, and contrary to what we
@@ -353,7 +353,7 @@ females with their young, and all of them very lean.
           font-family="serif"
             line-height="12pt"
             space-after.optimum="0pt"
-            text-align="start">
+            text-align="justify">
 The wind continued in the same direction until we had rounded
 Point Wollaston, and then changed to a quarter, which enabled us
 to steer for Hood's River, which we ascended as high as the first
@@ -375,7 +375,7 @@ novelty.
           font-family="serif"
             line-height="12pt"
             space-after.optimum="0pt"
-            text-align="start">
+            text-align="justify">
 The shores between Cape Barrow and Cape Flinders, including
 the extensive branches of Arctic and Melville Sounds, and Bathurst's
 Inlet, may be comprehended in one great gulf, which I have distinguished
@@ -391,7 +391,7 @@ named in honour of His Royal Highness the Duke of York.
           font-family="serif"
             line-height="12pt"
             space-after.optimum="0pt"
-            text-align="start">
+            text-align="justify">
 It may be deserving of notice that the extremes in temperature
 of the sea water during our voyage were 53 deg and 35 deg, but its general
 temperature was between 43 deg and 48 deg. Throughout our return from
@@ -406,7 +406,7 @@ be attributed to the north-west gales.
             line-height="10pt"
             space-before.optimum="3pt"
             space-after.optimum="3pt"
-            text-align="start">August 26.
+            text-align="justify">August 26.
       </fo:block>
 
     <!-- Normal text -->
@@ -414,7 +414,7 @@ be attributed to the north-west gales.
           font-family="serif"
             line-height="12pt"
             space-after.optimum="0pt"
-            text-align="start">
+            text-align="justify">
 Previous to our departure this morning, an assortment
 of iron materials, beads, looking-glasses, and other articles
 were put up in a conspicuous situation for the Esquimaux, and the
@@ -430,7 +430,7 @@ intended to pursue towards Slave Lake.
           font-family="serif"
             line-height="12pt"
             space-after.optimum="0pt"
-            text-align="start"
+            text-align="justify"
       break-after="page" >
 Embarking at eight A.M. we proceeded up the river, which is full
 of sandy shoals, but sufficiently deep for canoes in the channels. It is
@@ -455,7 +455,7 @@ made to-day was not more than six miles.
 
     <!-- header -->
   <fo:static-content flow-name="xsl-region-before">
-    <fo:block text-align="start" font-size="10pt"
+    <fo:block text-align="justify" font-size="10pt"
             font-family="sans-serif"
       line-height="10pt" >
       John Franklin - Journey to the Shores of the Polar Sea
@@ -478,7 +478,7 @@ made to-day was not more than six miles.
           font-family="serif"
             line-height="12pt"
             space-after.optimum="0pt"
-            text-align="start">
+            text-align="justify">
 The next morning the net furnished us with ten white fish
 and trout. Having made a further deposit of iron work for the
 Esquimaux we pursued our voyage up the river, but the shoals and
@@ -511,7 +511,7 @@ combined in the annexed plate.
           font-family="serif"
             line-height="12pt"
             space-after.optimum="0pt"
-            text-align="start">
+            text-align="justify">
 The river being surveyed from the summit of a hill, above these
 falls, appeared so rapid and shallow, that it seemed useless to
 attempt proceeding any farther in the large canoes. I therefore
@@ -527,7 +527,7 @@ finished, we prepared for our departure on the following day.
           font-family="serif"
             line-height="12pt"
             space-after.optimum="0pt"
-            text-align="start">
+            text-align="justify">
 The leather which had been preserved for making shoes was
 equally divided among the men, two pairs of flannel socks were given
 to each person, and such articles of warm clothing as remained, were
@@ -549,7 +549,7 @@ as possible.
           font-family="serif"
             line-height="12pt"
             space-after.optimum="0pt"
-            text-align="start">
+            text-align="justify">
 The next morning was warm, and very fine. Every one was on
 the alert at an early hour, being anxious to commence the journey.
 Our luggage consisted of ammunition, nets, hatchets, ice chisels,
@@ -576,7 +576,7 @@ it could be re-pitched.
           font-family="serif"
             line-height="12pt"
             space-after.optimum="0pt"
-            text-align="start">
+            text-align="justify">
 In the morning of the 1st of September a fall of snow took
 place; the canoes became a cause of delay, by the difficulty of
 carrying them in a high wind, and they sustained much damage
@@ -605,7 +605,7 @@ exhibited but little naked rock; they were covered with lichens.
           font-family="serif"
             line-height="12pt"
             space-after.optimum="0pt"
-            text-align="start">
+            text-align="justify">
 Having ascertained from the summit of the highest hill near the
 tents, that the river continued to preserve a west course; and fear-ing
 that by pursuing it further we might lose much time, and un-necessarily
@@ -635,7 +635,7 @@ a few grasses, and on the drier spots with lichens.
           font-family="serif"
             line-height="12pt"
             space-after.optimum="0pt"
-            text-align="start">
+            text-align="justify">
 Having walked twelve miles and a half, we encamped at seven P.M.,
 and distributed our last piece of pemmican, and a little arrow-root
 for supper, which afforded but a scanty meal. This evening was
@@ -664,7 +664,7 @@ felt from hunger.
           font-family="serif"
             line-height="12pt"
             space-after.optimum="0pt"
-            text-align="start">
+            text-align="justify">
 The morning of the 7th cleared up a little, but the wind was still
 strong, and the weather extremely cold. From the unusual con-tinuance
 of the storm, we feared the winter had set in with all its
@@ -684,7 +684,7 @@ out of his mittens.
           font-family="serif"
             line-height="12pt"
             space-after.optimum="0pt"
-            text-align="start">
+            text-align="justify">
 Just as we were about to commence our march, I was seized with
 a fainting fit, in consequence of exhaustion and sudden exposure to
 the wind; but after eating a morsel of portable soup, I recovered, so
@@ -739,7 +739,7 @@ route across the barren grounds.
           font-family="serif"
             line-height="12pt"
             space-after.optimum="0pt"
-            text-align="start">
+            text-align="justify">
 In the afternoon we got into a more hilly country, where the
 ground was strewed with large stones. The surface of these was
 covered with lichens of the genus gyrophora, which the Canadians
@@ -757,7 +757,7 @@ afterwards adopted throughout the journey.
           font-family="serif"
             line-height="12pt"
             space-after.optimum="0pt"
-            text-align="start">
+            text-align="justify">
 At half past five in the morning we proceeded; and after walking
 about two miles, came to Cracroft's River, flowing to the westward,
 with a very rapid current over a rocky channel. We had much diffi-culty
@@ -793,7 +793,7 @@ cold, though the thermometer was at 17 deg.
           font-family="serif"
             line-height="12pt"
             space-after.optimum="0pt"
-            text-align="start">
+            text-align="justify">
 We started at six on the 9th, and at the end of two miles re-gained
 our hunters, who were halting on the borders of a lake amidst
 a clump of stunted willows. This lake stretched to the westward as
@@ -852,7 +852,7 @@ Islands.
             line-height="10pt"
             space-before.optimum="3pt"
             space-after.optimum="3pt"
-            text-align="start">September 10.
+            text-align="justify">September 10.
       </fo:block>
 
     <!-- Normal text -->
@@ -860,7 +860,7 @@ Islands.
           font-family="serif"
             line-height="12pt"
             space-after.optimum="0pt"
-            text-align="start">
+            text-align="justify">
 We had a cold north wind, and the atmosphere
 was foggy. The thermometer 18 deg at five A.M. In the course of
 our march this morning, we passed many small lakes; and the
@@ -907,7 +907,7 @@ could not get near them.
           font-family="serif"
             line-height="12pt"
             space-after.optimum="0pt"
-            text-align="start">
+            text-align="justify">
 We were detained all the next day by a strong southerly wind,
 and were much incommoded in the tents by the drift snow. The
 temperature was 20 deg. The average for the last ten days about
@@ -920,7 +920,7 @@ rest, and there was only meat remaining sufficient for the next day.
           font-family="serif"
             line-height="12pt"
             space-after.optimum="0pt"
-            text-align="start">
+            text-align="justify">
 The gale had not diminished on the 12th, and, as we were
 fearful of its continuance for some time, we determined on going
 forward; our only doubt regarded the preservation of the canoe,
@@ -941,7 +941,7 @@ consumed the last of our meat.
           font-family="serif"
             line-height="12pt"
             space-after.optimum="0pt"
-            text-align="start">
+            text-align="justify">
 We set out on the 13th, in thick hazy weather, and, after an hour's
 march, had the extreme mortification to find ourselves on the
 borders of a large lake, which we subsequently learned from the
@@ -986,7 +986,7 @@ who was very eager in the chase, and often successful.
             line-height="10pt"
             space-before.optimum="3pt"
             space-after.optimum="3pt"
-            text-align="start">September 14.
+            text-align="justify">September 14.
       </fo:block>
 
     <!-- Normal text -->
@@ -994,7 +994,7 @@ who was very eager in the chase, and often successful.
           font-family="serif"
             line-height="12pt"
             space-after.optimum="0pt"
-            text-align="start">
+            text-align="justify">
 This morning the officers being assembled round
 a small fire, Perrault presented each of us with a small piece of meat
 which he had saved from his allowance. It was received with great

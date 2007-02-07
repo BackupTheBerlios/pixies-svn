@@ -44,14 +44,16 @@ def xslt_convert( xml, xsl ):
 	libxml2.lineNumbersDefault( 1 )
 	libxml2.substituteEntitiesDefault( 1 )
 	
-	styledoc = libxml2.parseFile( xsl )
-	if not styledoc:
-		Error("Cannot parse stylesheet: '%s'" % xsl )
+	try:
+		styledoc = libxml2.parseFile( xsl )
+	except libxml2.parserError:
+		Error("Cannot parse XSL stylesheet: '%s'" % xsl )
 
 	style = libxslt.parseStylesheetDoc( styledoc )
 
-	doc = libxml2.parseFile( xml )
-	if not doc:
+	try:
+		doc = libxml2.parseFile( xml )
+	except libxml2.parserError:
 		Error("Unable to parse XML document: '%s'" % xml )
 
 	result = style.applyStylesheet( doc, None )

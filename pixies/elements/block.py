@@ -45,8 +45,6 @@ class Block( Paragraph, Properties ):
 		self.caseSensitive = 1
 		self._setup( text, self.style, bulletText, frags, cleanBlockQuotedText)
 
-		
-	"""	
 	def split(self,availWidth, availHeight):
 		if len(self.frags)<=0: return []
 
@@ -65,19 +63,18 @@ class Block( Paragraph, Properties ):
 		if n<=s: return [self]
 		func = self._get_split_blParaFunc()
 
-		P1 = Paragraph(None,style,bulletText=self.bulletText,frags=func(blPara,0,s))
+		P1 = Block(None,style,bulletText=self.bulletText,frags=func(blPara,0,s))
 		#this is a major hack
 		P1.blPara = ParaLines(kind=1,lines=blPara.lines[0:s],aH=availHeight,aW=availWidth)
 		P1._JustifyLast = 1
 		if style.firstLineIndent != 0:
 			style = deepcopy(style)
 			style.firstLineIndent = 0
-		P2 = Paragraph(None,style,bulletText=None,frags=func(blPara,s,n))
-		print "P1\n", P1
-		print "P2\n", P2
+		P2 = Block(None,style,bulletText=None,frags=func(blPara,s,n))
+		# print "P1\n", P1
+		# print "P2\n", P2
 		return [P1,P2]			
-	"""
-
+	
 
 	def getPlainText(self,identify=None):
 		"""Convenience function for templates which want access
@@ -96,4 +93,3 @@ class Block( Paragraph, Properties ):
 			return text
 		else:
 			return ''
-

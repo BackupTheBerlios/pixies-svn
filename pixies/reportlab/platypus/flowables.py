@@ -305,7 +305,7 @@ class Image(Flowable):
             self.filename = `filename`
         else:
             self._file = self.filename = filename
-        if not fp and os.path.splitext(filename)[1] in ['.jpg', '.JPG', '.jpeg', '.JPEG']:
+        if 0:## Quick.. # not fp and os.path.splitext(filename)[1] in ['.jpg', '.JPG', '.jpeg', '.JPEG']:
             from reportlab.lib.utils import open_for_read
             f = open_for_read(filename, 'b')
             info = pdfutils.readJPEGInfo(f)
@@ -314,6 +314,7 @@ class Image(Flowable):
             self.imageHeight = info[1]
             self._img = None
             self._setup(width,height,kind,0)
+            ##
         elif fp:
             self._setup(width,height,kind,0)
         else:

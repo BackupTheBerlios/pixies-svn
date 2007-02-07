@@ -17,10 +17,11 @@ focused on the production of PDF files from DocBook documents.
 """,
 	author="Matteo Merli",
 	author_email="matteo.merli@gmail.com",
-	licence="GPL",
+	license="GPL",
 	platforms='ALL',
 	
 	url="http://merlimat.net/software/pixies",
+	download_url='http://developer.berlios.de/project/showfiles.php?group_id=2516',
 	packages=['pixies', 
 		'pixies.utils', 
 		'pixies.elements',

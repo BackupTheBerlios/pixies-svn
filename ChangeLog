@@ -6,6 +6,7 @@
     a requirement for Pixies.
   - Added more commented samples.
   - Automized packaging release
+  - Fixed bug when no fo:page-sequence-master is defined.
 
 * ## 0.1 ## (8 Nov 2004)
   First public release.

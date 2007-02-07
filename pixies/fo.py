@@ -10,12 +10,7 @@ This code is licenced under the GPL. See LICENSE file.
 
 from pixies.reportlab.platypus import *
 from pixies.elements import *
-
-
-##################from reportlab.platypus.para import Paragraph
-
-
-
+from pixies.utils import *
 
 ############################################################################
 
@@ -58,7 +53,9 @@ class FoBuilder:
 		sequence.name = name
 		self.sequences.append( sequence )
 
-	def fo_block(self, text, attrs, sequence, region):
+	def fo_block(self, text, attrs, seq_name, region):
+		
+		seq = self.get_sequence( seq_name, region )
 		
 		###REMOVE ME
 		if len(text) < 5: 
@@ -66,29 +63,36 @@ class FoBuilder:
 			# print attrs
 			return
 		
+		seq.regions[ region ].append( 
+						Block( text, attrs ) 
+				)
+				
+	def fo_graphic( self, attrs, seq_name, region ):
+		seq = self.get_sequence( seq_name, region )
+		seq.regions[ region ].append( ExternalGraphic( attrs ) )
+		
+	## def fo_list( self, node ):
+	### 	
+		
+		
+	def get_sequence( self, seq_name, region ):
 		seq = None
 		for s in self.sequences:
-			if s.name == sequence:
+			if s.name == seq_name:
 				seq = s 
 				break
 			
 		if not seq:
-			print "\n\nSequences:"
+			Log("\n\nSequences:")
 			for i in self.sequences:
-				print " *", i.name
-			print "Sequence not found: '%s'\n" % sequence
-			raise ValueError
+				Log(" * %s" % i.name )
+			Error( "Sequence not found: '%s'" % seq_name )
 		
-		# print seq.regions
-		
+		# initialize the region list
 		if not seq.regions.get( region ):
 			seq.regions[ region ] = []
 			
-		seq.regions[ region ].append( 
-						Block( text, attrs ) 
-				)
-		
-		
+		return seq
 		
 		
 		

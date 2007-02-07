@@ -41,6 +41,7 @@ class DocumentTemplate(BaseDocTemplate):
 	def __init__(self, filename, dh):
 		self.dh = dh
 		BaseDocTemplate.__init__(self, filename)
+		self.allowSplitting = 1
 		
 		self.pageTemplates = {}
 		
@@ -145,7 +146,8 @@ class DocumentTemplate(BaseDocTemplate):
 		
 	def handle_pageEnd( self ):
 		self.rel_page += 1
-		self._handle_pageEnd
+		self._handle_pageEnd()
+		print "PAGE CLOSED [%u]" % self.page
 		
 	def build( self ):
 		self._calc()
@@ -157,7 +159,7 @@ class DocumentTemplate(BaseDocTemplate):
 			self.sequence = seq
 			self.seq_master = self.dh.seq_master.get( seq.name , None )
 			self.rel_page = 1
-			Log( "\t[Seq: %s]" % seq.name )
+			Log( "\n\n\n\t[Seq: %s]\n\n\n" % seq.name )
 			flowables = seq.regions['xsl-region-body']
 			
 			# After a page sequence, there's always a page break.
@@ -167,6 +169,8 @@ class DocumentTemplate(BaseDocTemplate):
 				self.clean_hanging()
 				try:
 					first = flowables[0]
+					#####
+					self.frame = self.pageTemplate.frames[0]
 					self.handle_flowable(flowables)
 				except:
 					#if it has trace info, add it to the traceback message.

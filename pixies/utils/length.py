@@ -24,11 +24,15 @@ def toLength(s, default=em):
 		if s[-2:]=='pc': return float(s[:-2])*pica
 		if s[-2:]=='em': return float(s[:-2]) * default
 		if s[-1:]=='%': return float(s[:-1]) * default / 100
+			
+		## Here there are named lengths.. mainly for the fonts
+		if s == 'x-large': return float( default * 1.5 )
+			
 		return float(s)
 	except:
 		## check for the form: margin-left="1.2in - -1.5pc"
 		try:
-			Warning("TESTING NEGATIVE VALUES: %s" % s )
+			print "TESTING NEGATIVE VALUES: %s" % s 
 			l1, l2 = s.split(' - ')
 			l1 = toLength( l1 )
 			l2 = toLength( l2 )

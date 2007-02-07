@@ -72,48 +72,56 @@ class Handler( FoBuilder ):
 			
 	def handle_page_sequence(self, seq ):
 		attrs = Attrs( seq )
-		page_sequence = attrs['master-reference']
+		self.page_sequence = attrs['master-reference']
 		
-		self.fo_page_sequence( page_sequence )
+		self.fo_page_sequence( self.page_sequence )
 		
 		for c in seq.childNodes:
 			if c.nodeName[:3] != 'fo:': continue
 			
 			## print c.nodeName
 			if c.nodeName == 'fo:static-content':
-				self.handle_static_content( c, page_sequence )
+				self.handle_static_content( c )
 			elif c.nodeName == 'fo:flow':
-				self.handle_flow( c, page_sequence )
+				self.handle_flow( c )
 				
-	def handle_static_content(self, static, page_sequence):
+	def handle_static_content( self, static ):
 		attrs = Attrs( static )
-		region = attrs['flow-name']
-		print "Static Content: ==> ", region, " page_sequence:", page_sequence
-		blocks = static.getElementsByTagName("fo:block")
-		##for i in blocks:
-		## print i.nodeName, ' - ' ,self.getText( i )
-		self.handle_blocks( blocks, page_sequence, region )
+		self.region = attrs['flow-name']
+		print "Static Content: ==> ", self.region, " page_sequence:", self.page_sequence
+		######## self.handle_blocks( blocks, page_sequence, region )
 	
-	def handle_flow(self, flow, page_sequence):
+	def handle_flow( self, flow ):
 		attrs = Attrs( flow )
-		region = attrs['flow-name']
-		print "Flow: ==> ", region
-		blocks = flow.getElementsByTagName("fo:block")
-		self.handle_blocks( blocks, page_sequence, region )
+		self.region = attrs['flow-name']
+		print "Flow Content: ==> ", self.region, " page_sequence:", self.page_sequence
+		## blocks = flow.getElementsByTagName("fo:block")
+		### self.handle_blocks( blocks )
+		self.handle_contents( flow )
 		
-	def handle_blocks(self, blocks, page_sequence, region ):
+	def handle_blocks( self, blocks ):
 		for block in blocks:
-			self.handle_block( block, page_sequence, region )
+			self.handle_block( block )
 			
-	def handle_block(self, block, page_sequence, region ):
+	def handle_block(self, block ):
 		attrs = Attrs( block )
-		self.fo_block( self.getText(block), attrs, page_sequence, region )
+		self.fo_block( self.getText(block), attrs, self.page_sequence, self.region )
 		# for b in block.getElementsByTagName('fo:block'):
 		#	self.handle_block( b )
 		
 	def handle_inline(self, inline ):
 		return Inline( inline )
-	
+		
+	def handle_contents( self, node ):
+		""" Handle all types of block-level elements that are 
+			children of this node. """
+		for n in node.childNodes:
+			if n.nodeName == 'fo:block':
+				self.handle_block( n )
+			if n.nodeName == 'fo:external-graphic':
+				self.fo_graphic( Attrs( n ), self.page_sequence, self.region )
+			if n.nodeName == 'fo:list-block':
+				self.fo_list( n, self.page_sequence, self.region )
 	
 
 def go( filename=None, buffer=None ):

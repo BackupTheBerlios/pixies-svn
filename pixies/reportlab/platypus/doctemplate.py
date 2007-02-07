@@ -543,7 +543,7 @@ class BaseDocTemplate:
         self.handle_breakBefore(flowables)
         self.handle_keepWithNext(flowables)
         f = flowables[0]
-        #print 'handling flowable %s' % f.identity()
+        print 'handling flowable: %s' % f.identity( 60 )
         del flowables[0]
         if f is None:
             return
@@ -567,8 +567,11 @@ class BaseDocTemplate:
                 if self.allowSplitting:
                     # see if this is a splittable thing
                     S = self.frame.split(f,self.canv)
-                    #print '%d parts to sequence on page %d' % (len(S), self.page)
+                    print '%d parts to sequence on page %d' % (len(S), self.page)
                     n = len(S)
+                    for i in S:
+                        print "Segment:", i.identity()
+                    
                 else:
                     n = 0
                 #if isinstance(f, KeepTogether): print 'n=%d' % n
@@ -581,9 +584,11 @@ class BaseDocTemplate:
                     del S[0]
                     for f in xrange(n-1):
                         flowables.insert(f,S[f])    # put split flowables back on the list
+                    flowables.insert( 0, PageBreak() )
                 else:
                     if hasattr(f,'_postponed'):
-                        raise LayoutError("Flowable %s too large on page %d" % (f.identity(30), self.page))
+                        # raise LayoutError("Flowable %s too large on page %d" % (f.identity(30), self.page) )
+                        return
                     # this ought to be cleared when they are finally drawn!
                     f._postponed = 1
                     flowables.insert(0,f)           # put the flowable back
